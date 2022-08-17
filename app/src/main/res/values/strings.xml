@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Overlay Timer</string>
+    <string name="play_text">Play</string>
+    <string name="pause_text">Pause</string>
+    <string name="restart_text">Restart</string>
+    <string name="pip_button_content_description">Enter Picture in Picture</string>
+</resources>
