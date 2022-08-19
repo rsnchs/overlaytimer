@@ -5,9 +5,10 @@ plugins {
     id 'com.google.dagger.hilt.android'
 }
 
-def apikeyPropertiesFile = rootProject.file("apikey.properties")
 def apikeyProperties =  new Properties()
-apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
+if(rootProject.file("apikey.properties").exists()) {
+    apikeyProperties.load(new FileInputStream(rootProject.file("apikey.properties")))
+}
 
 android {
     compileSdk 32
