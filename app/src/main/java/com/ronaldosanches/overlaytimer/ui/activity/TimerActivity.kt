@@ -24,10 +24,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
+import com.microsoft.appcenter.AppCenter
+import com.microsoft.appcenter.analytics.Analytics
+import com.microsoft.appcenter.crashes.Crashes
+import com.ronaldosanches.overlaytimer.BuildConfig
 import com.ronaldosanches.overlaytimer.R
 import com.ronaldosanches.overlaytimer.shared.Constants
 import com.ronaldosanches.overlaytimer.ui.screens.TimerScreen
-import com.ronaldosanches.overlaytimer.ui.theme.*
+import com.ronaldosanches.overlaytimer.ui.theme.OverlayTheme
+import com.ronaldosanches.overlaytimer.ui.theme.darkColors
+import com.ronaldosanches.overlaytimer.ui.theme.lightColors
 import com.ronaldosanches.overlaytimer.ui.viewmodel.TimerViewModel
 import com.ronaldosanches.overlaytimer.ui.viewmodel.TimerViewModelPreview
 import dagger.hilt.android.AndroidEntryPoint
@@ -72,6 +78,10 @@ class TimerActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AppCenter.start(
+            application, BuildConfig.APP_CENTER_KEY,
+            Analytics::class.java, Crashes::class.java
+        )
         setContent {
             OverlayTheme {
                 val colors = if(isSystemInDarkTheme()) darkColors() else lightColors()
