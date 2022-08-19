@@ -49,6 +49,7 @@ class TimerViewModel @Inject constructor(
     override fun onRestartClick() {
         _currentTime.postValue(TIME_ZERO)
         timer.restartTimer()
+        onPauseClick()
     }
 
     override fun isPiPActive(inPictureInPictureMode: Boolean) {
