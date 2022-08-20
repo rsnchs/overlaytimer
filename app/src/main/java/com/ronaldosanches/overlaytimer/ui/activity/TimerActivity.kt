@@ -79,7 +79,7 @@ class TimerActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AppCenter.start(
-            application, BuildConfig.APP_CENTER_KEY,
+            application, BuildConfig.OVERLAY_TIMER_APP_CENTER_KEY,
             Analytics::class.java, Crashes::class.java
         )
         setContent {
