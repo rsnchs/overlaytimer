@@ -25,4 +25,9 @@ object Constants {
         const val RATIO_SMALL = 21
         const val RATIO_BIG = 40
     }
+
+    object Tags {
+        const val PIP_OFF_CONTAINER = "tag_pip_off_container"
+        const val PIP_ON_CONTAINER = "tag_pip_on_container"
+    }
 }

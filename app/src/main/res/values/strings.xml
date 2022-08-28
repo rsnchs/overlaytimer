@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">Overlay Timer</string>
     <string name="play_text">Play</string>
+    <string name="play_state">Playing</string>
     <string name="pause_text">Pause</string>
+    <string name="pause_state">Paused</string>
     <string name="restart_text">Restart</string>
     <string name="pip_button_content_description">Enter Picture in Picture</string>
+    <string name="custom_clock_accessibility_description">Current time is %1$s minutes and %2$s seconds</string>
 </resources>
