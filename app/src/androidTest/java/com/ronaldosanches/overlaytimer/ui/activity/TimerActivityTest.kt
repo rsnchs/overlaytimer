@@ -136,21 +136,13 @@ class ViewModelMock constructor(
     override val activatePiP: LiveData<Boolean>
         get() = MutableLiveData(null)
 
-    override fun onPlayClick() {
-    }
+    override fun onPlayClick() = Unit
 
-    override fun onPauseClick() {
-    }
+    override fun onPauseClick() = Unit
 
-    override fun onRestartClick() {
-        TODO("Not yet implemented")
-    }
+    override fun onRestartClick() = Unit
 
-    override fun isPiPActive(inPictureInPictureMode: Boolean) {
-        TODO("Not yet implemented")
-    }
+    override fun isPiPActive(inPictureInPictureMode: Boolean) = Unit
 
-    override fun activatePiP(playing: Boolean) {
-        TODO("Not yet implemented")
-    }
+    override fun activatePiP(playing: Boolean) = Unit
 }
