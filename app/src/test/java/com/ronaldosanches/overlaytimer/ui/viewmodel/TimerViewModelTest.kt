@@ -3,9 +3,7 @@ package com.ronaldosanches.overlaytimer.ui.viewmodel
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.ronaldosanches.overlaytimer.getOrAwaitValue
 import com.ronaldosanches.overlaytimer.usecase.GetTimeUseCase
-import io.mockk.MockKAnnotations
-import io.mockk.coEvery
-import io.mockk.coVerify
+import io.mockk.*
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.flow.channelFlow
 import org.junit.Assert.assertEquals
@@ -28,9 +26,9 @@ class TimerViewModelTest {
     @Test
     fun `on init should bind timer`() {
         //arrange
-        coEvery { getTimeUseCase.startTime() } answers { channelFlow {  } }
+        every { getTimeUseCase.startTime() } answers { channelFlow {  } }
 
-        coVerify(exactly = 1) { getTimeUseCase.startTime() }
+        verify(exactly = 1) { getTimeUseCase.startTime() }
     }
 
     @Test
@@ -45,8 +43,8 @@ class TimerViewModelTest {
     @Test
     fun `on click play should change playing state to true`() {
         //arrange
-        coEvery { getTimeUseCase.startTime() } answers { channelFlow {  } }
-        coEvery { getTimeUseCase.unpause() } returns Unit
+        every { getTimeUseCase.startTime() } answers { channelFlow {  } }
+        every { getTimeUseCase.unpause() } returns Unit
         val expected = true
 
         //act
@@ -54,14 +52,14 @@ class TimerViewModelTest {
 
         //assert
         assertEquals(expected, viewModel.isCurrentlyPlaying.getOrAwaitValue())
-        coVerify(exactly = 1) { getTimeUseCase.unpause() }
+        verify (exactly = 1) { getTimeUseCase.unpause() }
     }
 
     @Test
     fun `on click pause should change playing state to false`() {
         //arrange
-        coEvery { getTimeUseCase.startTime() } answers { channelFlow {  } }
-        coEvery { getTimeUseCase.pause() } returns Unit
+        every { getTimeUseCase.startTime() } answers { channelFlow {  } }
+        every { getTimeUseCase.pause() } returns Unit
         val expected = false
 
         //act
@@ -69,15 +67,15 @@ class TimerViewModelTest {
 
         //assert
         assertEquals(expected, viewModel.isCurrentlyPlaying.getOrAwaitValue())
-        coVerify(exactly = 1) { getTimeUseCase.pause() }
+        verify (exactly = 1) { getTimeUseCase.pause() }
     }
 
     @Test
     fun `on click restart should change playing state to false and restart timer`() {
         //arrange
-        coEvery { getTimeUseCase.startTime() } answers { channelFlow {  } }
-        coEvery { getTimeUseCase.restartTimer() } returns Unit
-        coEvery { getTimeUseCase.pause() } returns Unit
+        every { getTimeUseCase.startTime() } answers { channelFlow {  } }
+        every { getTimeUseCase.restartTimer() } returns Unit
+        every { getTimeUseCase.pause() } returns Unit
         val expected = false
         val currentTimeInitial = "00:00"
 
@@ -87,13 +85,13 @@ class TimerViewModelTest {
         //assert
         assertEquals(expected, viewModel.isCurrentlyPlaying.getOrAwaitValue())
         assertEquals(currentTimeInitial, viewModel.currentTime.getOrAwaitValue())
-        coVerify(exactly = 1) { getTimeUseCase.restartTimer() }
+        verify (exactly = 1) { getTimeUseCase.restartTimer() }
     }
 
     @Test
     fun `on sending pip activate should emit value`() {
         //arrange
-        coEvery { getTimeUseCase.startTime() } answers { channelFlow {  } }
+        every { getTimeUseCase.startTime() } answers { channelFlow {  } }
         val isPlaying = true
 
         //act
@@ -106,7 +104,7 @@ class TimerViewModelTest {
     @Test
     fun `on sending pip active should emit value`() {
         //arrange
-        coEvery { getTimeUseCase.startTime() } answers { channelFlow {  } }
+        every { getTimeUseCase.startTime() } answers { channelFlow {  } }
         val isActive = false
 
         //act

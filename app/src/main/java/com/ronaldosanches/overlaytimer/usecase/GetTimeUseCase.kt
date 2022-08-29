@@ -17,7 +17,7 @@ class GetTimeUseCase @Inject constructor() {
         const val ZERO = 0L
         const val ONE_SECOND = 1000L
     }
-    suspend fun startTime() : Flow<Long> = channelFlow {
+    fun startTime() : Flow<Long> = channelFlow {
         while(isActive) {
             if(!isPaused) {
                 send(currentTime)
