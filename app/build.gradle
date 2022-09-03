@@ -1,3 +1,7 @@
+buildscript {
+    apply from: '../jacoco/modules.gradle'
+}
+
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
@@ -79,4 +83,5 @@ dependencies {
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
     testImplementation 'app.cash.turbine:turbine:0.9.0'
     testImplementation "androidx.arch.core:core-testing:2.1.0"
+    debugImplementation "org.jacoco:org.jacoco.agent:0.8.7"
 }
