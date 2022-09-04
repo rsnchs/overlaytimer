@@ -4,7 +4,6 @@ on:
     branches:
       - develop
       - 'feature/**'
-      if: ${{ github.base_ref == 'develop' }}
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
