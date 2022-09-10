@@ -24,6 +24,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.ktx.Firebase
 import com.microsoft.appcenter.AppCenter
 import com.microsoft.appcenter.analytics.Analytics
 import com.microsoft.appcenter.crashes.Crashes
@@ -37,6 +39,7 @@ import com.ronaldosanches.overlaytimer.ui.theme.lightColors
 import com.ronaldosanches.overlaytimer.ui.viewmodel.TimerViewModel
 import com.ronaldosanches.overlaytimer.ui.viewmodel.TimerViewModelPreview
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class TimerActivity : ComponentActivity() {
