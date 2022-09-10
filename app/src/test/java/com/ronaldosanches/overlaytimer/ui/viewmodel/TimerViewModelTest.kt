@@ -2,6 +2,7 @@ package com.ronaldosanches.overlaytimer.ui.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.ronaldosanches.overlaytimer.getOrAwaitValue
+import com.ronaldosanches.overlaytimer.usecase.AddAnalyticsEventUseCase
 import com.ronaldosanches.overlaytimer.usecase.GetTimeUseCase
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
@@ -15,12 +16,13 @@ import org.junit.rules.TestRule
 class TimerViewModelTest {
     @get:Rule var rule : TestRule = InstantTaskExecutorRule()
     private lateinit var viewModel: TimerViewModel
-    @MockK lateinit var getTimeUseCase: GetTimeUseCase
+    @MockK(relaxed = true) lateinit var getTimeUseCase: GetTimeUseCase
+    @MockK(relaxed = true) lateinit var analyticsUseCase: AddAnalyticsEventUseCase
 
     @Before
     fun setup() {
         MockKAnnotations.init(this)
-        viewModel = TimerViewModel(getTimeUseCase)
+        viewModel = TimerViewModel(getTimeUseCase, analyticsUseCase)
     }
 
     @Test
@@ -53,6 +55,7 @@ class TimerViewModelTest {
         //assert
         assertEquals(expected, viewModel.isCurrentlyPlaying.getOrAwaitValue())
         verify (exactly = 1) { getTimeUseCase.unpause() }
+        verify (exactly = 1){ analyticsUseCase.onPlayClick(any()) }
     }
 
     @Test
@@ -68,6 +71,7 @@ class TimerViewModelTest {
         //assert
         assertEquals(expected, viewModel.isCurrentlyPlaying.getOrAwaitValue())
         verify (exactly = 1) { getTimeUseCase.pause() }
+        verify (exactly = 1){ analyticsUseCase.onPauseClick(any()) }
     }
 
     @Test
@@ -86,6 +90,7 @@ class TimerViewModelTest {
         assertEquals(expected, viewModel.isCurrentlyPlaying.getOrAwaitValue())
         assertEquals(currentTimeInitial, viewModel.currentTime.getOrAwaitValue())
         verify (exactly = 1) { getTimeUseCase.restartTimer() }
+        verify (exactly = 1){ analyticsUseCase.onRestartClick(any()) }
     }
 
     @Test
@@ -112,5 +117,6 @@ class TimerViewModelTest {
 
         //assert
         assertEquals(isActive, viewModel.isPiPModeActive.getOrAwaitValue())
+        verify (exactly = 1){ analyticsUseCase.onPIPModeChange(isActive,any()) }
     }
 }

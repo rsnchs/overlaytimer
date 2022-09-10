@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ronaldosanches.overlaytimer.shared.toSecondsMinutesFormatted
+import com.ronaldosanches.overlaytimer.usecase.AddAnalyticsEventUseCase
 import com.ronaldosanches.overlaytimer.usecase.GetTimeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -14,6 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class TimerViewModel @Inject constructor(
     private val timer : GetTimeUseCase,
+    private val analytics: AddAnalyticsEventUseCase
 ) : ViewModel(), ITimerViewModel {
 
     private companion object {
@@ -38,22 +40,27 @@ class TimerViewModel @Inject constructor(
 
     override fun onPlayClick() {
         _isCurrentlyPlaying.postValue(true)
+        analytics.onPlayClick(currentTime.value)
         timer.unpause()
     }
 
     override fun onPauseClick() {
         _isCurrentlyPlaying.postValue(false)
         timer.pause()
+        analytics.onPauseClick(currentTime.value)
     }
 
     override fun onRestartClick() {
         _currentTime.postValue(TIME_ZERO)
+        analytics.onRestartClick(currentTime.value)
         timer.restartTimer()
-        onPauseClick()
+        _isCurrentlyPlaying.postValue(false)
+        timer.pause()
     }
 
     override fun isPiPActive(inPictureInPictureMode: Boolean) {
         _isPiPModeActive.postValue(inPictureInPictureMode)
+        analytics.onPIPModeChange(inPictureInPictureMode, currentTime.value)
     }
 
     override fun activatePiP(playing: Boolean) {
