@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "648197035686",
+    "project_id": "overlay-timer",
+    "storage_bucket": "overlay-timer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:648197035686:android:ad401e2d76fbe2eac74667",
+        "android_client_info": {
+          "package_name": "com.ronaldosanches.overlaytimer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "648197035686-0tdtdj5t18oqugrrc0lbg1npnh5os0dd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoDjudG3Ug9FeraehK45lG9FjA558MXqY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "648197035686-0tdtdj5t18oqugrrc0lbg1npnh5os0dd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:648197035686:android:a9039f5039121280c74667",
+        "android_client_info": {
+          "package_name": "com.ronaldosanches.overlaytimer.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "648197035686-0tdtdj5t18oqugrrc0lbg1npnh5os0dd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoDjudG3Ug9FeraehK45lG9FjA558MXqY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "648197035686-0tdtdj5t18oqugrrc0lbg1npnh5os0dd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

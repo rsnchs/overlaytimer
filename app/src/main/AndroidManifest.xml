@@ -3,6 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.ronaldosanches.overlaytimer">
 
+    <permission android:name="com.ronaldosanches.overlay.broadcast.permission"
+        android:label="broadcast_permission"
+        android:protectionLevel="dangerous"
+        />
+
     <application
         android:name=".shared.OverlayTimerApp"
         android:allowBackup="true"
